@@ -1,4 +1,4 @@
-package games.enchanted.lightmapview;
+package games.enchanted.lightmapview.render;
 
 import com.mojang.blaze3d.pipeline.RenderPipeline;
 import com.mojang.blaze3d.vertex.VertexConsumer;

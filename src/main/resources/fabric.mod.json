@@ -13,14 +13,14 @@
 	},
 	"license": "CC BY-NC 4.0",
 	"icon": "assets/eg_lightmap_view/icon.png",
-	"environment": "*",
+	"environment": "client",
 	"entrypoints": {
-		"main": [
+		"client": [
 			"games.enchanted.lightmapview.LightmapView"
 		]
 	},
 	"mixins": [
-		"lightmap-view.mixins.json"
+		"eg_lightmap_view.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.16.0",

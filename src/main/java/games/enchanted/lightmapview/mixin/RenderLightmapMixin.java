@@ -2,7 +2,8 @@ package games.enchanted.lightmapview.mixin;
 
 import games.enchanted.lightmapview.LightmapViewState;
 import games.enchanted.lightmapview.mixin.access.GuiGraphicsAccess;
-import games.enchanted.lightmapview.render.LightmapViewRenderState;
+import games.enchanted.lightmapview.preview.PreviewType;
+import games.enchanted.lightmapview.render.ImageViewRenderState;
 import games.enchanted.lightmapview.render.ModRenderPipelines;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.gui.Gui;
@@ -17,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Gui.class)
 public abstract class RenderLightmapMixin {
 	@Unique
-	private static final int LIGHTMAP_VIEWER_PADDING = 8;
+    private static final int LIGHTMAP_VIEWER_PADDING = 8;
 
 	@Inject(
 		at = @At("TAIL"),
@@ -29,16 +30,24 @@ public abstract class RenderLightmapMixin {
 			guiGraphics,
 			LightmapViewState.lightmapSize,
 			LightmapViewState.lightmapSize,
-			guiGraphics.guiWidth() - LightmapViewState.lightmapSize - LIGHTMAP_VIEWER_PADDING,
+			LIGHTMAP_VIEWER_PADDING,
 			LIGHTMAP_VIEWER_PADDING
 		);
 	}
 
 	@Unique
 	private void egLightmatView$blitLightmap(GuiGraphics guiGraphics, int width, int height, int x, int y) {
+		PreviewType previewType;
+		if(LightmapViewState.lightmapEnabled) {
+			previewType = PreviewType.LIGHTMAP;
+		}
+		else {
+			return;
+		}
 		((GuiGraphicsAccess) guiGraphics).egLightmapView$getGuiRenderState().submitGuiElement(
-			new LightmapViewRenderState(
-				ModRenderPipelines.LIGHTMAP_VIEW,
+			new ImageViewRenderState(
+				ModRenderPipelines.TEXTURE_VIEW,
+				previewType,
 				((GuiGraphicsAccess) guiGraphics).egLightmapView$getPose(),
 				x,
 				y,

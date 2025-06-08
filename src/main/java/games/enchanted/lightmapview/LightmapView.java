@@ -22,15 +22,15 @@ public class LightmapView implements ClientModInitializer {
 				.then(ClientCommandManager.argument("size", IntegerArgumentType.integer(16, 512))
 					.executes(context -> {
 						LightmapViewState.lightmapSize = IntegerArgumentType.getInteger(context, "size");
-						LightmapViewState.lightmapEnabled = true;
+						LightmapViewState.itemAtlasEnabled = true;
 						context.getSource().sendFeedback(Component.literal("Set lightmap viewer size to %s".formatted(LightmapViewState.lightmapSize)));
 						return 1;
 					})
 				)
 				.then(ClientCommandManager.argument("enabled", BoolArgumentType.bool())
 					.executes(context -> {
-						LightmapViewState.lightmapEnabled = BoolArgumentType.getBool(context, "enabled");
-						context.getSource().sendFeedback(Component.literal(LightmapViewState.lightmapEnabled ? "Enabled lightmap viewer" : "Disabled lightmap viewer"));
+						LightmapViewState.itemAtlasEnabled = BoolArgumentType.getBool(context, "enabled");
+						context.getSource().sendFeedback(Component.literal(LightmapViewState.itemAtlasEnabled ? "Enabled lightmap viewer" : "Disabled lightmap viewer"));
 						return 1;
 					})
 				)

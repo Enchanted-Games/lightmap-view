@@ -10,6 +10,7 @@
   },
   "client": [
     "GuiRenderer",
-    "access.GuiGraphicsAccess"
+    "access.GuiGraphicsAccess",
+    "access.RenderPipelinesAccess"
   ]
 }

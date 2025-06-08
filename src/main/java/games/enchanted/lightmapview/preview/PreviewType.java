@@ -6,15 +6,22 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
 
-public enum PreviewType {
-    LIGHTMAP(() -> Minecraft.getInstance().gameRenderer.lightTexture().getTextureView());
+public class PreviewType {
+    public static final PreviewType LIGHTMAP = new PreviewType(() -> Minecraft.getInstance().gameRenderer.lightTexture().getTextureView());
 
     public final Supplier<@Nullable GpuTextureView> textureViewSupplier;
+    private final boolean vflip;
 
-    PreviewType(Supplier<@Nullable GpuTextureView> textureViewSupplier) {
+    public PreviewType(Supplier<@Nullable GpuTextureView> textureViewSupplier) {
         this.textureViewSupplier = textureViewSupplier;
+        vflip = false;
     }
-    PreviewType() {
-        this.textureViewSupplier = () -> null;
+    public PreviewType(Supplier<@Nullable GpuTextureView> textureViewSupplier, boolean vflip) {
+        this.textureViewSupplier = textureViewSupplier;
+        this.vflip = vflip;
+    }
+
+    public boolean vflip() {
+        return vflip;
     }
 }

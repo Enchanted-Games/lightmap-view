@@ -2,14 +2,15 @@
 	"schemaVersion": 1,
 	"id": "eg_lightmap_view",
 	"version": "${version}",
-	"name": "Lightmap View",
-	"description": "Renders the lightmap to the top right corner of the screen for debugging purposes",
+	"name": "Texture Viewer",
+	"description": "Adds a debug command that displays the lightmap and gui items atlas for debugging purposes.\n\nRun `/eg_texture_viewer <viewer name> <boolean>` to enable or disable the viewers, alternatively you can use `/eg_texture_viewer <viewer name> <int>` to change the size. The items_atlas viewer will only show when an item is currently being rendered in a gui",
 	"authors": [
 		"Enchanted_Games"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://github.com/Enchanted-Games/lightmap-view",
+		"sources": "https://github.com/Enchanted-Games/lightmap-view",
+		"issues": "https://github.com/Enchanted-Games/lightmap-view/issues"
 	},
 	"license": "CC BY-NC 4.0",
 	"icon": "assets/eg_lightmap_view/icon.png",
@@ -27,8 +28,5 @@
 		"minecraft": "~1.21.4",
 		"java": ">=21",
 		"fabric-api": "*"
-	},
-	"suggests": {
-		"another-mod": "*"
 	}
 }

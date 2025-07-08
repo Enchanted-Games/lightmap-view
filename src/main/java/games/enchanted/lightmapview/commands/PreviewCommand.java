@@ -57,13 +57,13 @@ public class PreviewCommand {
 
     private static void setLightmapEnabled(FabricClientCommandSource source, boolean value) {
         TextureViewState.lightmapEnabled = value;
-        sendMessage(source, Component.literal(TextureViewState.itemAtlasEnabled ? "Enabled lightmap viewer" : "Disabled lightmap viewer"));
+        sendMessage(source, Component.literal(TextureViewState.lightmapEnabled ? "Enabled lightmap viewer" : "Disabled lightmap viewer"));
     }
 
     private static void setItemsAtlasSize(FabricClientCommandSource source, int value) {
         TextureViewState.itemsAtlasSize = value;
         TextureViewState.itemAtlasEnabled = true;
-        sendMessage(source, Component.literal("Set items atlas viewer size to %s".formatted(TextureViewState.itemAtlasEnabled)));
+        sendMessage(source, Component.literal("Set items atlas viewer size to %s".formatted(TextureViewState.itemsAtlasSize)));
     }
 
     private static void setItemsAtlasEnabled(FabricClientCommandSource source, boolean value) {

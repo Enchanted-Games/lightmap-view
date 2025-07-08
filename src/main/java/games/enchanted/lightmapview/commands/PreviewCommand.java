@@ -8,6 +8,8 @@ import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.util.CommonColors;
 
 public class PreviewCommand {
     public static void register(CommandDispatcher<FabricClientCommandSource> dispatcher, CommandBuildContext commandBuildContext) {
@@ -46,7 +48,7 @@ public class PreviewCommand {
     }
 
     private static void sendMessage(FabricClientCommandSource source, Component message) {
-        source.sendFeedback(Component.literal("[Texture Viewer]: ").append(message));
+        source.sendFeedback(Component.empty().append(Component.literal("[Texture Viewer]: ").withStyle(Style.EMPTY.withBold(true).withColor(CommonColors.SOFT_YELLOW))).append(message));
     }
 
     private static void setLightmapSize(FabricClientCommandSource source, int value) {

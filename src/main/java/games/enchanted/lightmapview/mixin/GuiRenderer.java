@@ -1,7 +1,7 @@
 package games.enchanted.lightmapview.mixin;
 
 import com.mojang.blaze3d.textures.GpuTextureView;
-import games.enchanted.lightmapview.LightmapViewState;
+import games.enchanted.lightmapview.TextureViewState;
 import games.enchanted.lightmapview.preview.PreviewType;
 import games.enchanted.lightmapview.render.PreviewRenderState;
 import net.minecraft.client.gui.render.state.GuiRenderState;
@@ -24,14 +24,14 @@ public class GuiRenderer {
         method = "prepareItemElements"
     )
     private void egLightmapView$drawItemsAtlas(CallbackInfo ci) {
-        if(!LightmapViewState.itemAtlasEnabled) return;
+        if(!TextureViewState.itemAtlasEnabled) return;
         renderState.submitGuiElement(
             PreviewRenderState.makeState(
                 new PreviewType(() -> itemsAtlasView, true),
-                LightmapViewState.lightmapSize,
-                LightmapViewState.lightmapSize,
-                LightmapViewState.PADDING,
-                LightmapViewState.PADDING,
+                TextureViewState.itemsAtlasSize,
+                TextureViewState.itemsAtlasSize,
+                TextureViewState.PADDING,
+                TextureViewState.PADDING,
                 new Matrix3x2fStack(12)
             )
         );

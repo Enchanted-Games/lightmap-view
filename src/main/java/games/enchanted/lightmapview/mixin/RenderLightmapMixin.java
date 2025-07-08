@@ -1,6 +1,6 @@
 package games.enchanted.lightmapview.mixin;
 
-import games.enchanted.lightmapview.LightmapViewState;
+import games.enchanted.lightmapview.TextureViewState;
 import games.enchanted.lightmapview.mixin.access.GuiGraphicsAccess;
 import games.enchanted.lightmapview.preview.PreviewType;
 import games.enchanted.lightmapview.render.PreviewRenderState;
@@ -20,14 +20,14 @@ public abstract class RenderLightmapMixin {
 		method = "render(Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/DeltaTracker;)V"
 	)
 	private void renderLightmapToScreen(GuiGraphics guiGraphics, DeltaTracker deltaTracker, CallbackInfo ci) {
-		if(!LightmapViewState.lightmapEnabled) return;
+		if(!TextureViewState.lightmapEnabled) return;
 		((GuiGraphicsAccess) guiGraphics).egLightmapView$getGuiRenderState().submitGuiElement(
 			PreviewRenderState.makeState(
 				PreviewType.LIGHTMAP,
-				LightmapViewState.lightmapSize,
-				LightmapViewState.lightmapSize,
-				LightmapViewState.PADDING,
-				LightmapViewState.PADDING,
+				TextureViewState.lightmapSize,
+				TextureViewState.lightmapSize,
+				TextureViewState.PADDING,
+				TextureViewState.PADDING,
 				new Matrix3x2fStack(12)
 			)
 		);

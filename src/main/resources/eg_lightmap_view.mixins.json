@@ -3,12 +3,12 @@
   "package": "games.enchanted.lightmapview.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "RenderLightmapMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "client": [
+    "RenderLightmapMixin",
     "GuiRenderer",
     "access.GuiGraphicsAccess",
     "access.RenderPipelinesAccess"

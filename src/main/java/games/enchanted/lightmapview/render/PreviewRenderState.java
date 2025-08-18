@@ -16,12 +16,12 @@ public record PreviewRenderState(RenderPipeline pipeline, PreviewType previewTyp
     }
 
     @Override
-    public void buildVertices(VertexConsumer vertexConsumer, float f) {
+    public void buildVertices(VertexConsumer vertexConsumer) {
         boolean vflip = previewType.vflip();
-        vertexConsumer.addVertexWith2DPose(this.pose(), (float)this.x0(), (float)this.y0(), f).setUv(0, vflip ? 1 : 0);
-        vertexConsumer.addVertexWith2DPose(this.pose(), (float)this.x0(), (float)this.y1(), f).setUv(0, vflip ? 0 : 1);
-        vertexConsumer.addVertexWith2DPose(this.pose(), (float)this.x1(), (float)this.y1(), f).setUv(1, vflip ? 0 : 1);
-        vertexConsumer.addVertexWith2DPose(this.pose(), (float)this.x1(), (float)this.y0(), f).setUv(1, vflip ? 1 : 0);
+        vertexConsumer.addVertexWith2DPose(this.pose(), (float)this.x0(), (float)this.y0()).setUv(0, vflip ? 1 : 0);
+        vertexConsumer.addVertexWith2DPose(this.pose(), (float)this.x0(), (float)this.y1()).setUv(0, vflip ? 0 : 1);
+        vertexConsumer.addVertexWith2DPose(this.pose(), (float)this.x1(), (float)this.y1()).setUv(1, vflip ? 0 : 1);
+        vertexConsumer.addVertexWith2DPose(this.pose(), (float)this.x1(), (float)this.y0()).setUv(1, vflip ? 1 : 0);
     }
 
     @Override

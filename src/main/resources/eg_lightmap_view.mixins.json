@@ -8,8 +8,9 @@
     "defaultRequire": 1
   },
   "client": [
-    "RenderLightmapMixin",
     "GuiRenderer",
+    "RenderLightmapMixin",
+    "TextureManagerMixin",
     "access.GuiGraphicsAccess",
     "access.RenderPipelinesAccess"
   ]

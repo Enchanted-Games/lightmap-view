@@ -19,7 +19,7 @@ public abstract class RenderLightmapMixin {
 		at = @At("TAIL"),
 		method = "render(Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/DeltaTracker;)V"
 	)
-	private void renderLightmapToScreen(GuiGraphics guiGraphics, DeltaTracker deltaTracker, CallbackInfo ci) {
+	private void egLightmapView$renderLightmapToScreen(GuiGraphics guiGraphics, DeltaTracker deltaTracker, CallbackInfo ci) {
 		if(!TextureViewState.lightmapEnabled) return;
 		((GuiGraphicsAccess) guiGraphics).egLightmapView$getGuiRenderState().submitGuiElement(
 			PreviewRenderState.makeState(

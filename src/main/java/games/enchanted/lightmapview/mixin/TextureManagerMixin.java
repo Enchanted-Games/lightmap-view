@@ -71,7 +71,7 @@ public class TextureManagerMixin {
                 for (int y = 0; y < lightmapTextureDimensions; ++y) {
                     for (int x = 0; x < lightmapTextureDimensions; ++x) {
                         int col = mappedView.data().getInt((x + y * lightmapTextureDimensions) * scratchTexture.getFormat().pixelSize());
-                        nativeImage.setPixelABGR(x, y, col | 0xFF000000);
+                        nativeImage.setPixelABGR(x, y, col);
                     }
                 }
                 nativeImage.writeToFile(debugScreenshotsPath.resolve("minecraft_lightmap.png"));
@@ -81,7 +81,7 @@ public class TextureManagerMixin {
                 throw new RuntimeException(e);
             }
 
-            LightmapView.LOGGER.info("Dumped lightmap");
+            LightmapView.LOGGER.info("Dumped lightmap to screenshots/debug/minecraft_lightmap.png");
 
             quadData.close();
             scratchTexture.close();

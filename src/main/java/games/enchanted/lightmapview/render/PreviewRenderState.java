@@ -31,7 +31,7 @@ public record PreviewRenderState(RenderPipeline pipeline, PreviewType previewTyp
 
     @Override
     public @NotNull TextureSetup textureSetup() {
-        return new TextureSetup(previewType.textureViewSupplier.get(), null, null);
+        return TextureSetup.singleTexture(previewType.textureViewSupplier.get(), previewType.textureSamplerSupplier.get());
     }
 
     @Override

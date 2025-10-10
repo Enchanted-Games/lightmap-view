@@ -12,6 +12,7 @@
     "RenderLightmapMixin",
     "TextureManagerMixin",
     "access.GuiGraphicsAccess",
+    "access.LightTextureAccess",
     "access.RenderPipelinesAccess"
   ]
 }

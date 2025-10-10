@@ -1,5 +1,9 @@
 package games.enchanted.lightmapview.mixin;
 
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.textures.AddressMode;
+import com.mojang.blaze3d.textures.FilterMode;
+import com.mojang.blaze3d.textures.GpuSampler;
 import com.mojang.blaze3d.textures.GpuTextureView;
 import games.enchanted.lightmapview.TextureViewState;
 import games.enchanted.lightmapview.preview.PreviewType;
@@ -10,6 +14,7 @@ import org.joml.Matrix3x2fStack;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -18,6 +23,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class GuiRenderer {
     @Shadow @Final GuiRenderState renderState;
     @Shadow @Nullable private GpuTextureView itemsAtlasView;
+    @Unique private GpuSampler egLightmapView$sampler = RenderSystem.getSamplerCache().getSampler(AddressMode.REPEAT, AddressMode.REPEAT, FilterMode.NEAREST, FilterMode.NEAREST);
 
     @Inject(
         at = @At("TAIL"),
@@ -27,7 +33,7 @@ public class GuiRenderer {
         if(!TextureViewState.itemAtlasEnabled) return;
         renderState.submitGuiElement(
             PreviewRenderState.makeState(
-                new PreviewType(() -> itemsAtlasView, true),
+                new PreviewType(() -> itemsAtlasView, () -> egLightmapView$sampler, true),
                 TextureViewState.itemsAtlasSize,
                 TextureViewState.itemsAtlasSize,
                 TextureViewState.PADDING,

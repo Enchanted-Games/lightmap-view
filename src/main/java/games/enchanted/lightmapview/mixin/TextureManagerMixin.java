@@ -6,15 +6,14 @@ import com.mojang.blaze3d.systems.CommandEncoder;
 import com.mojang.blaze3d.systems.GpuDevice;
 import com.mojang.blaze3d.systems.RenderPass;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.textures.GpuTexture;
-import com.mojang.blaze3d.textures.GpuTextureView;
-import com.mojang.blaze3d.textures.TextureFormat;
+import com.mojang.blaze3d.textures.*;
 import com.mojang.blaze3d.vertex.*;
 import games.enchanted.lightmapview.LightmapView;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.texture.TextureManager;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -25,6 +24,9 @@ import java.util.OptionalInt;
 
 @Mixin(TextureManager.class)
 public class TextureManagerMixin {
+    @Unique
+    private GpuSampler egLightmapView$sampler = RenderSystem.getSamplerCache().getSampler(AddressMode.REPEAT, AddressMode.REPEAT, FilterMode.NEAREST, FilterMode.NEAREST);
+
     @Inject(
         at = @At("TAIL"),
         method = "dumpAllSheets"
@@ -59,7 +61,7 @@ public class TextureManagerMixin {
             renderPass.setPipeline(RenderPipelines.TRACY_BLIT);
             renderPass.setVertexBuffer(0, quadData);
             renderPass.setIndexBuffer(indexBuffer, autoStorageIndexBuffer.type());
-            renderPass.bindSampler("InSampler", lightmapTextureView);
+            renderPass.bindTexture("InSampler", lightmapTextureView, egLightmapView$sampler);
             renderPass.drawIndexed(0, 0, 6, 1);
         }
 

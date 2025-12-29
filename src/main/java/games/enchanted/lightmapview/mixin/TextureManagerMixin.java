@@ -25,7 +25,7 @@ import java.util.OptionalInt;
 @Mixin(TextureManager.class)
 public class TextureManagerMixin {
     @Unique
-    private GpuSampler egLightmapView$sampler = RenderSystem.getSamplerCache().getSampler(AddressMode.REPEAT, AddressMode.REPEAT, FilterMode.NEAREST, FilterMode.NEAREST);
+    private GpuSampler egLightmapView$sampler = RenderSystem.getSamplerCache().getSampler(AddressMode.REPEAT, AddressMode.REPEAT, FilterMode.NEAREST, FilterMode.NEAREST, false);
 
     @Inject(
         at = @At("TAIL"),

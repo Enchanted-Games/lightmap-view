@@ -11,7 +11,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.function.Supplier;
 
 public class PreviewType {
-    private static final GpuSampler sampler = RenderSystem.getSamplerCache().getSampler(AddressMode.REPEAT, AddressMode.REPEAT, FilterMode.NEAREST, FilterMode.NEAREST);
+    private static final GpuSampler sampler = RenderSystem.getSamplerCache().getSampler(AddressMode.REPEAT, AddressMode.REPEAT, FilterMode.NEAREST, FilterMode.NEAREST, false);
 
     public static final PreviewType LIGHTMAP = new PreviewType(
         () -> Minecraft.getInstance().gameRenderer.lightTexture().getTextureView(),

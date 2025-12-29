@@ -23,7 +23,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class GuiRenderer {
     @Shadow @Final GuiRenderState renderState;
     @Shadow @Nullable private GpuTextureView itemsAtlasView;
-    @Unique private GpuSampler egLightmapView$sampler = RenderSystem.getSamplerCache().getSampler(AddressMode.REPEAT, AddressMode.REPEAT, FilterMode.NEAREST, FilterMode.NEAREST);
+    @Unique private GpuSampler egLightmapView$sampler = RenderSystem.getSamplerCache().getSampler(AddressMode.REPEAT, AddressMode.REPEAT, FilterMode.NEAREST, FilterMode.NEAREST, false);
 
     @Inject(
         at = @At("TAIL"),
